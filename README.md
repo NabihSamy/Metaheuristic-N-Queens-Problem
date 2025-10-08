@@ -128,7 +128,7 @@ nqueens-solver/
 | Algorithm | Time Complexity | Space Complexity | Optimal | Complete |
 | --------- | --------------- | ---------------- | ------- | -------- |
 | DFS       | O(b^m)          | O(bm)            | ❌       | ✅        |
-| BFS       | O(b^d)          | O(b^d)           | ✅       | ✅        |
+| BFS       | O(b^d)          | O(b^d)           | ❌       | ✅        |
 | A* (H1)   | O(b^d)          | O(b^d)           | ✅*      | ✅        |
 | A* (H2)   | O(b^d)          | O(b^d)           | ✅*      | ✅        |
 
