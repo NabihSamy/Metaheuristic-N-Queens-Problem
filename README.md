@@ -124,25 +124,33 @@ nqueens-solver/
 
 ## 📊 Algorithm Comparison
 
-| Algorithm | Time Complexity | Space Complexity | Optimal | Complete |
-| --------- | --------------- | ---------------- | ------- | -------- |
-| DFS       | O(b^m)          | O(bm)            | ❌       | ✅        |
-| BFS       | O(b^d)          | O(b^d)           | ❌       | ✅        |
-| A* (H1)   | O(b^d)          | O(b^d)           | ✅*      | ✅        |
-| A* (H2)   | O(b^d)          | O(b^d)           | ✅*      | ✅        |
+| **Algorithm** | **Time Complexity** | **Space Complexity** | **Complete** |
+|----------------|---------------------|----------------------|---------------|
+| **DFS**        | O(b^m)              | O(bm)                | ✅ |
+| **BFS**        | O(b^d)              | O(b^d)               | ✅ |
+| **A*** (H1)    | O(b^d)              | O(b^d)               | ✅ |
+| **A*** (H2)    | O(b^d)              | O(b^d)               | ✅ |
 
-*If the heuristic is admissible.*
+### Notes
+- **b** → branching factor  
+- **m** → maximum search depth  
+- **d** → depth of a valid solution  
+- **✅*** means **heuristic-guided efficiency**, not “path optimality” (since N-Queens has no path cost).  
+- **DFS** is generally **faster and more memory-efficient** than BFS for N-Queens.  
+- **BFS** is theoretically complete but **impractical for large N** due to exponential memory growth.  
+- **A*** with heuristics significantly **reduces the number of explored states** by focusing on promising configurations.  
 
 ---
 
-## 🧪 Testing
+### 🧠 Performance Summary
 
-Try different board sizes:
+For the **N-Queens problem**:
+- **DFS** is the **most practical** uninformed search method. It quickly finds valid solutions while keeping memory usage low.  
+- **BFS** explores all possibilities level by level, which guarantees completeness but makes it **inefficient beyond small N**.  
+- **A*** (with **H1** or **H2**) offers the **best balance** between exploration cost and runtime efficiency.  
+- **H1 (Conflict Heuristic)** typically performs **better than H2**, as it directly minimizes queen conflicts during search.  
 
-* **N = 4** → trivial case
-* **N = 8** → classic N-Queens problem
-* **N = 10** → medium complexity
-* **N ≥ 12** → high complexity
+---
 
 ---
 
