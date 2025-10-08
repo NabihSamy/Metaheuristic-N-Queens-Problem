@@ -98,7 +98,7 @@ public class QueensGUI extends JFrame {
     
     private void loadCrownImage() {
         try {
-            crownImage = ImageIO.read(new File("crown-gold.png"));
+            crownImage = ImageIO.read(new File("resources/crown-gold.png"));
         } catch (IOException e) {
             System.err.println("Image crown-gold.png non trouvée");
         }
