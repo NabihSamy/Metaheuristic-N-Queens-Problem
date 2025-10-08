@@ -52,7 +52,7 @@ public class QueensGUI extends JFrame {
         controlPanel.add(new JLabel("Taille:"));
         sizeCombo = new JComboBox<>(new Integer[]{4, 5, 6, 7, 8, 9, 10, 12});
         sizeCombo.setSelectedItem(8);
-        sizeCombo.addActionListener(e -> {
+        sizeCombo.addActionListener(_ -> {
             int size = (Integer) sizeCombo.getSelectedItem();
             currentBoard = new Board(size);
             updateBoardSize();
@@ -60,28 +60,28 @@ public class QueensGUI extends JFrame {
         controlPanel.add(sizeCombo);
         
         dfsButton = new JButton("DFS");
-        dfsButton.addActionListener(e -> {
+        dfsButton.addActionListener(_ -> {
             int size = (Integer) sizeCombo.getSelectedItem();
             controller.solveDFS(size);
         });
         controlPanel.add(dfsButton);
         
         bfsButton = new JButton("BFS");
-        bfsButton.addActionListener(e -> {
+        bfsButton.addActionListener(_ -> {
             int size = (Integer) sizeCombo.getSelectedItem();
             controller.solveBFS(size);
         });
         controlPanel.add(bfsButton);
         
         astarConflictButton = new JButton("A* (Conflits)");
-        astarConflictButton.addActionListener(e -> {
+        astarConflictButton.addActionListener(_ -> {
             int size = (Integer) sizeCombo.getSelectedItem();
             controller.solveAStarConflict(size);
         });
         controlPanel.add(astarConflictButton);
         
         astarDistanceButton = new JButton("A* (Distance)");
-        astarDistanceButton.addActionListener(e -> {
+        astarDistanceButton.addActionListener(_ -> {
             int size = (Integer) sizeCombo.getSelectedItem();
             controller.solveAStarDistance(size);
         });
