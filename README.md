@@ -15,7 +15,7 @@ Ce projet implémente une solution au problème des N-Reines en utilisant:
 
 ## 🔧 Prérequis
 
-- **Java**: Version 11 ou supérieur
+- **Java**: Version 25
 - **Maven**: 3.6+ (optionnel, pour la gestion automatique)
 
 ### Versions testées et compatibles
