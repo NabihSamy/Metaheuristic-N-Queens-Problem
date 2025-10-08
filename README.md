@@ -34,19 +34,20 @@ This project provides an implementation of the N-Queens problem using various se
 
 ## 🚀 Installation & Execution
 
-### Method 1: Without Maven (manual compilation)
+### Method : 
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/NabihSamy/MethaHeuristique.git
-cd nqueens-solver
+git clone https://github.com/NabihSamy/Metaheuristic-N-Queens-Problem.git
+cd Metaheuristic-N-Queens-Problem
 ```
 
 Create the compilation directory:
 
 ```bash
 mkdir -p bin
+mkdir -p bin\ressources
 ```
 
 Compile all files:
@@ -58,43 +59,13 @@ javac -d bin -encoding UTF-8 src/model/*.java src/algorithm/*.java src/algorithm
 Copy resources:
 
 ```bash
-cp -r src/ressources bin/
+xcopy ressources bin\ressources /E /I /Y
 ```
 
 Run the program:
 
 ```bash
 java -cp bin src.Main
-```
-
----
-
-### Method 2: With Maven (recommended)
-
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/nqueens-solver.git
-cd nqueens-solver
-```
-
-Compile:
-
-```bash
-mvn clean compile
-```
-
-Run:
-
-```bash
-mvn exec:java
-```
-
-Or create an executable JAR:
-
-```bash
-mvn package
-java -jar target/nqueens-solver-1.0.0.jar
 ```
 
 ---

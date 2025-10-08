@@ -1,0 +1,73 @@
+# Fichiers compilés Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Dossiers de build
+bin/
+target/
+build/
+out/
+
+# Fichiers Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Fichiers Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# Fichiers IDE - IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Fichiers IDE - Eclipse
+.classpath
+.project
+.settings/
+
+# Fichiers IDE - VSCode
+.vscode/
+*.code-workspace
+
+# Fichiers IDE - NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+
+# Fichiers système - macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Fichiers système - Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+# Fichiers système - Linux
+*~
+.directory
+
+# Logs
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+
+# Fichiers de cache
+.cache/
