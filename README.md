@@ -147,30 +147,6 @@ Try different board sizes:
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome!
-To contribute:
-
-1. **Fork** the project
-2. **Create a branch:**
-
-   ```bash
-   git checkout -b feature/improvement
-   ```
-3. **Commit your changes:**
-
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. **Push to your branch:**
-
-   ```bash
-   git push origin feature/improvement
-   ```
-5. **Open a Pull Request**
-
----
 
 ## 📝 License
 
