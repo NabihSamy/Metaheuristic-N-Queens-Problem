@@ -67,9 +67,9 @@ java -jar target/nqueens-solver-1.0.0.jar
 
 
 nqueens-solver/
-├── src/
-│ ├── algorithm/
-│ │ ├── SearchAlgorithm.java # Interface commune
+├── src/ \n
+│ ├── algorithm/ \n
+│ │ ├── SearchAlgorithm.java # Interface commune \n
 │ │ ├── DepthFirstSearch.java # Algorithme DFS
 │ │ ├── BreadthFirstSearch.java # Algorithme BFS
 │ │ ├── AStarSearch.java # Algorithme A*
