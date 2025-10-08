@@ -4,10 +4,10 @@ import src.algorithm.heuristic.*;
 import src.model.SearchResult;
 
 public class SolverController {
-    public static final int DFS = 0;
-    public static final int BFS = 0;
-    public static final int ASTAR_H1 = 0;
-    public static final int ASTAR_H2 = 0;
+    public static final AlgorithmType DFS = null;
+    public static final AlgorithmType BFS = null;
+    public static final AlgorithmType ASTAR_H1 = null;
+    public static final AlgorithmType ASTAR_H2 = null;
     private SearchAlgorithm algorithm;
     private SearchResult lastResult;
     
@@ -29,4 +29,29 @@ public class SolverController {
             default: throw new IllegalArgumentException();
         }
     }
+
+    public String getElapsedTimePretty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getElapsedTimePretty'");
+    }
+
+    public boolean hasResult() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hasResult'");
+    }
+
+    public char[] getParcouru() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getParcouru'");
+    }
+
+    public char[] getCree() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCree'");
+    }
+
+	public int[] getQueens() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getQueens'");
+	}
 }

@@ -1,6 +1,8 @@
 package src.view;
 import javax.swing.*;
 import java.awt.*;
+
+import src.algorithm.AlgorithmType;
 import src.control.SolverController;
 
 public class QueensGUI extends JFrame {
@@ -49,11 +51,11 @@ public class QueensGUI extends JFrame {
                     boardSize = newSize;
                     
                     // Déterminer l'algorithme sélectionné
-                    final int algo;
-                    if (dfsButton.isSelected()) algo = SolverController.DFS;
-                    else if (bfsButton.isSelected()) algo = SolverController.BFS;
-                    else if (aStar1Button.isSelected()) algo = SolverController.ASTAR_H1;
-                    else if (aStar2Button.isSelected()) algo = SolverController.ASTAR_H2;
+                    AlgorithmType algo;
+                    if (dfsButton.isSelected()) algo            = SolverController.DFS;
+                    else if (bfsButton.isSelected()) algo       = SolverController.BFS;
+                    else if (aStar1Button.isSelected()) algo    = SolverController.ASTAR_H1;
+                    else if (aStar2Button.isSelected()) algo    = SolverController.ASTAR_H2;
                     else algo = SolverController.ASTAR_H1; // par défaut
                     
                     // Désactiver les contrôles pendant le calcul
