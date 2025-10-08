@@ -17,6 +17,7 @@ public class QueensGUI extends JFrame {
     private JRadioButton bfsRadio;
     private JRadioButton astarH1Radio;
     private JRadioButton astarH2Radio;
+    private JRadioButton geneticRadio;
     private ButtonGroup algorithmGroup;
     private JLabel timeLabel;
     private JLabel parcoruLabel;
@@ -81,8 +82,6 @@ public class QueensGUI extends JFrame {
         
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         
-        
-        
         // Algorithm Radio Buttons
         algorithmGroup = new ButtonGroup();
         
@@ -94,12 +93,16 @@ public class QueensGUI extends JFrame {
         rightPanel.add(bfsRadio);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         
-        astarH1Radio = createAlgorithmRadio("A* - H1()", true);
+        astarH1Radio = createAlgorithmRadio("A* - H1()", false);
         rightPanel.add(astarH1Radio);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         
         astarH2Radio = createAlgorithmRadio("A* - H2()", false);
         rightPanel.add(astarH2Radio);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        
+        geneticRadio = createAlgorithmRadio("Génétique", true);
+        rightPanel.add(geneticRadio);
         
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
@@ -145,7 +148,7 @@ public class QueensGUI extends JFrame {
         
         add(mainPanel);
         
-        setSize(900, 650);
+        setSize(900, 700);
         setLocationRelativeTo(null);
     }
     
@@ -165,23 +168,23 @@ public class QueensGUI extends JFrame {
     }
     
     private JPanel createStatPanel(String label, JLabel valueLabel) {
-    JPanel panel = new JPanel(new BorderLayout(10, 0));
-    panel.setBackground(new Color(220, 220, 220));
-    panel.setMaximumSize(new Dimension(250, 40));
-    
-    JLabel labelText = new JLabel(label);
-    labelText.setFont(new Font("Arial", Font.PLAIN, 16));
-    panel.add(labelText, BorderLayout.WEST);
-    
-    JPanel valuePanel = new JPanel(new BorderLayout());
-    valuePanel.setBackground(Color.WHITE);
-    valuePanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-    valuePanel.setPreferredSize(new Dimension(120, 35));
-    valuePanel.add(valueLabel, BorderLayout.CENTER);
-    panel.add(valuePanel, BorderLayout.EAST);
-    
-    return panel;
-}
+        JPanel panel = new JPanel(new BorderLayout(10, 0));
+        panel.setBackground(new Color(220, 220, 220));
+        panel.setMaximumSize(new Dimension(250, 40));
+        
+        JLabel labelText = new JLabel(label);
+        labelText.setFont(new Font("Arial", Font.PLAIN, 16));
+        panel.add(labelText, BorderLayout.WEST);
+        
+        JPanel valuePanel = new JPanel(new BorderLayout());
+        valuePanel.setBackground(Color.WHITE);
+        valuePanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+        valuePanel.setPreferredSize(new Dimension(120, 35));
+        valuePanel.add(valueLabel, BorderLayout.CENTER);
+        panel.add(valuePanel, BorderLayout.EAST);
+        
+        return panel;
+    }
     
     private void loadCrownImage() {
         try {
@@ -257,6 +260,8 @@ public class QueensGUI extends JFrame {
             controller.solveAStarConflict(size);
         } else if (astarH2Radio.isSelected()) {
             controller.solveAStarDistance(size);
+        } else if (geneticRadio.isSelected()) {
+            controller.solveGenetic(size);
         }
     }
     

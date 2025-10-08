@@ -29,6 +29,10 @@ public class SolverController {
         solve(new AStarSearch(new DistanceHeuristic()), boardSize, "A* (Distance)");
     }
     
+    public void solveGenetic(int boardSize) {
+        solve(new GeneticAlgorithm(), boardSize, "Algorithme Génétique");
+    }
+    
     private void solve(SearchAlgorithm algorithm, int boardSize, String algorithmName) {
         SwingWorker<SearchResult, Void> worker = new SwingWorker<>() {
             @Override

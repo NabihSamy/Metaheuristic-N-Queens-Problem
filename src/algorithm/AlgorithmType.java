@@ -4,7 +4,8 @@ public enum AlgorithmType {
     DFS("Depth First Search"),
     BFS("Breadth First Search"),
     ASTAR_DISTANCE("A* (Distance)"),
-    ASTAR_CONFLICT("A* (Conflits)");
+    ASTAR_CONFLICT("A* (Conflits)"),
+    GENETIC("Algorithme Génétique");
     
     private String displayName;
     
