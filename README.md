@@ -95,7 +95,6 @@ nqueens-solver/
 │   ├── ressources/
 │   │   └── crown-gold.png              # Queen icon
 │   └── Main.java                       # Entry point
-├── pom.xml                             # Maven configuration
 ├── .gitignore
 ├── .java-version
 └── README.md
