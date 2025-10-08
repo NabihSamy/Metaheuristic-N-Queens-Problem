@@ -135,7 +135,6 @@ nqueens-solver/
 - **b** → branching factor  
 - **m** → maximum search depth  
 - **d** → depth of a valid solution  
-- **✅*** means **heuristic-guided efficiency**, not “path optimality” (since N-Queens has no path cost).  
 - **DFS** is generally **faster and more memory-efficient** than BFS for N-Queens.  
 - **BFS** is theoretically complete but **impractical for large N** due to exponential memory growth.  
 - **A*** with heuristics significantly **reduces the number of explored states** by focusing on promising configurations.  
