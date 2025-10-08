@@ -1,9 +1,9 @@
 package src.view;
 import javax.swing.*;
 import java.awt.*;
-import src.control.Controller;
+import src.control.SolverController;
 
-public class DameInterface extends JFrame {
+public class QueensGUI extends JFrame {
     private JPanel boardPanel;
     private JTextField damesField;
     private JTextField timeField;
@@ -14,10 +14,10 @@ public class DameInterface extends JFrame {
     private JRadioButton aStar1Button;
     private JRadioButton aStar2Button;
     private int boardSize = 8;
-    private Controller controller;
+    private SolverController controller;
 
-    public DameInterface() {
-        controller = new Controller();
+    public QueensGUI() {
+        controller = new SolverController();
         
         setTitle("♛ Dame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,11 +50,11 @@ public class DameInterface extends JFrame {
                     
                     // Déterminer l'algorithme sélectionné
                     final int algo;
-                    if (dfsButton.isSelected()) algo = Controller.DFS;
-                    else if (bfsButton.isSelected()) algo = Controller.BFS;
-                    else if (aStar1Button.isSelected()) algo = Controller.ASTAR_H1;
-                    else if (aStar2Button.isSelected()) algo = Controller.ASTAR_H2;
-                    else algo = Controller.ASTAR_H1; // par défaut
+                    if (dfsButton.isSelected()) algo = SolverController.DFS;
+                    else if (bfsButton.isSelected()) algo = SolverController.BFS;
+                    else if (aStar1Button.isSelected()) algo = SolverController.ASTAR_H1;
+                    else if (aStar2Button.isSelected()) algo = SolverController.ASTAR_H2;
+                    else algo = SolverController.ASTAR_H1; // par défaut
                     
                     // Désactiver les contrôles pendant le calcul
                     goButton.setEnabled(false);
@@ -204,6 +204,6 @@ public class DameInterface extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(DameInterface::new);
+        SwingUtilities.invokeLater(QueensGUI::new);
     }
 }
