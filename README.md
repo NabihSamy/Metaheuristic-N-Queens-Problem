@@ -1,6 +1,6 @@
 # N-Queens Solver 👑
 
-A solver for the **N-Queens problem**, implementing several search algorithms with a **Swing-based graphical interface**.
+A solver for the **N-Queens problem**, implementing several **search and metaheuristic algorithms** with a **Swing-based graphical interface**.
 
 ![Interface](docs/screenshot.png)
 
@@ -8,33 +8,33 @@ A solver for the **N-Queens problem**, implementing several search algorithms wi
 
 ## 📋 Description
 
-This project provides an implementation of the N-Queens problem using various search algorithms:
+This project provides an implementation of the N-Queens problem using multiple algorithms:
 
-* **DFS** (Depth-First Search)
-* **BFS** (Breadth-First Search)
-* **A*** with two different heuristics:
-
-  * **H1:** Conflict-based heuristic
-  * **H2:** Distance-based heuristic
+- **DFS** (Depth-First Search)  
+- **BFS** (Breadth-First Search)  
+- **A\*** with two different heuristics:  
+  - **H1:** Conflict-based heuristic  
+  - **H2:** Distance-based heuristic  
+- **Genetic Algorithm (GA):**  
+  A population-based metaheuristic inspired by natural selection, which evolves potential board configurations toward valid solutions.
 
 ---
 
 ## 🔧 Requirements
 
-* **Java:** Version 25
-* **Maven:** 3.6+ (optional, for automatic dependency management)
+- **Java:** Version 25  
 
 ### Tested and Compatible Versions
 
 | Java Version | Status       | Test Date    |
-| ------------ | ------------ | ------------ |
+|--------------|---------------|--------------|
 | Java 25      | ✅ Compatible | October 2025 |
 
 ---
 
 ## 🚀 Installation & Execution
 
-### Method : 
+### Method:
 
 Clone the repository:
 
@@ -80,6 +80,7 @@ nqueens-solver/
 │   │   ├── DepthFirstSearch.java       # DFS algorithm
 │   │   ├── BreadthFirstSearch.java     # BFS algorithm
 │   │   ├── AStarSearch.java            # A* algorithm
+│   │   ├── GeneticAlgorithm.java       # Genetic Algorithm
 │   │   └── heuristic/
 │   │       ├── Heuristic.java          # Heuristic interface
 │   │       ├── ConflictHeuristic.java  # H1: Conflict-based
@@ -107,86 +108,85 @@ nqueens-solver/
 1. **Launch the application**
 2. **Choose the board size** (4–20)
 3. **Select an algorithm:**
-
-   * DFS: Depth-First Search
-   * BFS: Breadth-First Search
-   * A* – H1: A* with conflict heuristic
-   * A* – H2: A* with distance heuristic
+   - DFS: Depth-First Search  
+   - BFS: Breadth-First Search  
+   - A* – H1: A* with conflict heuristic  
+   - A* – H2: A* with distance heuristic  
+   - Genetic Algorithm: Evolutionary search using selection, crossover, and mutation
 4. **Click “Solve”**
 5. **Observe the results:**
-
-   * Visual board solution
-   * Execution time
-   * Number of visited nodes
-   * Number of created nodes
+   - Visual board solution  
+   - Execution time  
+   - Number of visited or generated states  
+   - Algorithm-specific performance metrics  
 
 ---
 
 ## 📊 Algorithm Comparison
 
-| **Algorithm** | **Time Complexity** | **Space Complexity** | **Complete** |
-|----------------|---------------------|----------------------|---------------|
-| **DFS**        | O(b^m)              | O(bm)                | ✅ |
-| **BFS**        | O(b^d)              | O(b^d)               | ✅ |
-| **A*** (H1)    | O(b^d)              | O(b^d)               | ✅ |
-| **A*** (H2)    | O(b^d)              | O(b^d)               | ✅ |
+| **Algorithm** | **Type** | **Time Complexity** | **Space Complexity** | **Complete** |
+|----------------|-----------|---------------------|----------------------|---------------|
+| **DFS**        | Search-based | O(b^m)              | O(bm)                | ✅ |
+| **BFS**        | Search-based | O(b^d)              | O(b^d)               | ✅ |
+| **A\*** (H1)  | Heuristic | O(b^d)              | O(b^d)               | ✅ |
+| **A\*** (H2)  | Heuristic | O(b^d)              | O(b^d)               | ✅ |
+| **Genetic Algorithm** | Metaheuristic | O(g × p) | O(p) | ❌ (stochastic) |
 
 ### Notes
 - **b** → branching factor  
 - **m** → maximum search depth  
 - **d** → depth of a valid solution  
+- **g** → number of generations (for GA)  
+- **p** → population size  
 - **DFS** is generally **faster and more memory-efficient** than BFS for N-Queens.  
-- **BFS** is theoretically complete but **impractical for large N** due to exponential memory growth.  
-- **A*** with heuristics significantly **reduces the number of explored states** by focusing on promising configurations.  
+- **A\*** heuristics guide the search toward conflict-free states.  
+- **GA** provides **near-optimal solutions** for large N, trading exactness for scalability and speed.
 
 ---
 
 ### 🧠 Performance Summary
 
 For the **N-Queens problem**:
-- **DFS** is the **most practical** uninformed search method. It quickly finds valid solutions while keeping memory usage low.  
-- **BFS** explores all possibilities level by level, which guarantees completeness but makes it **inefficient beyond small N**.  
-- **A*** (with **H1** or **H2**) offers the **best balance** between exploration cost and runtime efficiency.  
-- **H1 (Conflict Heuristic)** typically performs **better than H2**, as it directly minimizes queen conflicts during search.  
+- **DFS** is the most practical uninformed search method, efficient for small boards.  
+- **BFS** is complete but **impractical for large N** due to exponential memory usage.  
+- **A\*** (with **H1** or **H2**) offers a **deterministic and efficient** solution approach.  
+- **Genetic Algorithm** performs best for **large N (≥ 20)**, providing **fast convergence** to valid or near-valid configurations even when exhaustive methods fail.  
+- **H1 (Conflict Heuristic)** typically outperforms **H2**, as it more directly penalizes queen conflicts.  
 
 ---
-
----
-
 
 ## 📝 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License**.  
 See the `LICENSE` file for details.
 
 ---
 
 ## 👤 Author
 
-**Nabih Samy ABDELHADI**
-
-* GitHub: [@NabihSamy](https://github.com/NabihSamy)
-* LinkedIn: [ABDELHADI Nabih Samy](https://www.linkedin.com/in/nabih-samy-abdelhadi-31538a243/)
+**Nabih Samy ABDELHADI**  
+- GitHub: [@NabihSamy](https://github.com/NabihSamy)  
+- LinkedIn: [ABDELHADI Nabih Samy](https://www.linkedin.com/in/nabih-samy-abdelhadi-31538a243/)
 
 ---
 
 ### Implemented Heuristics
 
-**H1 (ConflictHeuristic):**
-Counts the number of conflicts among already placed queens and adds the number of remaining queens to be placed.
+**H1 (ConflictHeuristic):**  
+Counts the number of conflicts among already placed queens and adds the number of remaining queens to be placed.  
 
-**H2 (DistanceHeuristic):**
-Calculates the remaining distance to place all queens while accounting for existing conflicts.
+**H2 (DistanceHeuristic):**  
+Calculates the remaining distance to place all queens while accounting for existing conflicts.  
 
 ---
 
 ### Optimizations
 
-* Efficient data structures (e.g., `HashSet` to avoid duplicate states)
-* Non-blocking GUI with `SwingWorker`
-* Dynamic chessboard size adjustment
+- Efficient data structures (e.g., `HashSet` to avoid duplicate states)  
+- Non-blocking GUI with `SwingWorker`  
+- Dynamic chessboard size adjustment  
+- Genetic algorithm parameters customizable (population size, mutation rate, selection method)
 
 ---
 
 ⭐ **Don’t forget to star this project if you found it useful!**
-
