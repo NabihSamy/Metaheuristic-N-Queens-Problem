@@ -150,7 +150,7 @@ For the **N-Queens problem**:
 - **DFS** is the most practical uninformed search method, efficient for small boards.  
 - **BFS** is complete but **impractical for large N** due to exponential memory usage.  
 - **A\*** (with **H1** or **H2**) offers a **deterministic and efficient** solution approach.  
-- **Genetic Algorithm** performs best for **large N (≥ 20)**, providing **fast convergence** to valid or near-valid configurations even when exhaustive methods fail.  
+- **Genetic Algorithm** provides near-valid solutions for large N, trading exactness for scalability and speed. It can perform very well in some runs, but may also get stuck in local optima due to its stochastic nature..  
 - **H1 (Conflict Heuristic)** typically outperforms **H2**, as it more directly penalizes queen conflicts.  
 
 ---
