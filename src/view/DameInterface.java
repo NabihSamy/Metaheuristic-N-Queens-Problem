@@ -1,13 +1,24 @@
 package src.view;
 import javax.swing.*;
 import java.awt.*;
+import src.control.Controller;
 
 public class DameInterface extends JFrame {
     private JPanel boardPanel;
     private JTextField damesField;
-    private int boardSize = 10; // taille initiale
+    private JTextField timeField;
+    private JTextField parcouruField;
+    private JTextField creeField;
+    private JRadioButton dfsButton;
+    private JRadioButton bfsButton;
+    private JRadioButton aStar1Button;
+    private JRadioButton aStar2Button;
+    private int boardSize = 8;
+    private Controller controller;
 
     public DameInterface() {
+        controller = new Controller();
+        
         setTitle("♛ Dame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 550);
@@ -25,18 +36,52 @@ public class DameInterface extends JFrame {
         damesField.setFont(new Font("Arial", Font.BOLD, 20));
         damesField.setHorizontalAlignment(JTextField.CENTER);
 
-        // Bouton "Done"
-        JButton doneButton = new JButton("GO");
-        doneButton.setFont(new Font("Arial", Font.ITALIC, 14));
-        doneButton.setBounds(75, 65, 60, 25);
+        // Bouton "GO" - Lance la résolution
+        JButton goButton = new JButton("GO");
+        goButton.setFont(new Font("Arial", Font.ITALIC, 14));
+        goButton.setBounds(75, 65, 60, 25);
 
-        // Les deux actions font la même chose
-        Runnable applySizeChange = () -> {
+        // Action pour lancer la résolution
+        Runnable solveNQueens = () -> {
             try {
                 int newSize = Integer.parseInt(damesField.getText());
                 if (newSize >= 4 && newSize <= 20) {
                     boardSize = newSize;
-                    rebuildBoard();
+                    
+                    // Déterminer l'algorithme sélectionné
+                    final int algo;
+                    if (dfsButton.isSelected()) algo = Controller.DFS;
+                    else if (bfsButton.isSelected()) algo = Controller.BFS;
+                    else if (aStar1Button.isSelected()) algo = Controller.ASTAR_H1;
+                    else if (aStar2Button.isSelected()) algo = Controller.ASTAR_H2;
+                    else algo = Controller.ASTAR_H1; // par défaut
+                    
+                    // Désactiver les contrôles pendant le calcul
+                    goButton.setEnabled(false);
+                    damesField.setEnabled(false);
+                    timeField.setText("Calcul...");
+                    
+                    // Lancer le solver dans un thread séparé pour ne pas bloquer l'UI
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            controller.solve(boardSize, algo);
+                            return null;
+                        }
+                        
+                        @Override
+                        protected void done() {
+                            // Mettre à jour l'affichage avec les résultats
+                            updateResults();
+                            rebuildBoard();
+                            
+                            // Réactiver les contrôles
+                            goButton.setEnabled(true);
+                            damesField.setEnabled(true);
+                        }
+                    };
+                    worker.execute();
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Entrez une taille entre 4 et 20.");
                 }
@@ -45,17 +90,17 @@ public class DameInterface extends JFrame {
             }
         };
 
-        doneButton.addActionListener(e -> applySizeChange.run());
-        damesField.addActionListener(e -> applySizeChange.run());
+        goButton.addActionListener(e -> solveNQueens.run());
+        damesField.addActionListener(e -> solveNQueens.run());
 
         // Sélection d'algo (boutons radio)
-        JRadioButton dfsButton = new JRadioButton("DFS");
+        dfsButton = new JRadioButton("DFS");
         dfsButton.setBounds(40, 100, 110, 25);
-        JRadioButton bfsButton = new JRadioButton("BFS");
+        bfsButton = new JRadioButton("BFS");
         bfsButton.setBounds(40, 130, 110, 25);
-        JRadioButton aStar1Button = new JRadioButton("A* - H1()");
+        aStar1Button = new JRadioButton("A* - H1()");
         aStar1Button.setBounds(40, 160, 110, 25);
-        JRadioButton aStar2Button = new JRadioButton("A* - H2()");
+        aStar2Button = new JRadioButton("A* - H2()");
         aStar2Button.setBounds(40, 190, 110, 25);
         aStar1Button.setSelected(true);
 
@@ -66,7 +111,7 @@ public class DameInterface extends JFrame {
         algoGroup.add(aStar2Button);
 
         // Temps affiché
-        JTextField timeField = new JTextField("0.034 s");
+        timeField = new JTextField("--");
         timeField.setBounds(50, 235, 110, 35);
         timeField.setHorizontalAlignment(JTextField.CENTER);
         timeField.setFont(new Font("Arial", Font.BOLD, 18));
@@ -75,7 +120,7 @@ public class DameInterface extends JFrame {
         // Parcouru
         JLabel parcouruLabel = new JLabel("Parcouru");
         parcouruLabel.setBounds(40, 285, 60, 20);
-        JTextField parcouruField = new JTextField("241");
+        parcouruField = new JTextField("--");
         parcouruField.setBounds(120, 285, 60, 22);
         parcouruField.setHorizontalAlignment(JTextField.RIGHT);
         parcouruField.setEditable(false);
@@ -83,14 +128,14 @@ public class DameInterface extends JFrame {
         // Créé
         JLabel creeLabel = new JLabel("Créé");
         creeLabel.setBounds(40, 315, 60, 20);
-        JTextField creeField = new JTextField("2400");
+        creeField = new JTextField("--");
         creeField.setBounds(120, 315, 60, 22);
         creeField.setHorizontalAlignment(JTextField.RIGHT);
         creeField.setEditable(false);
 
         // Ajout des composants à droite
         rightPanel.add(damesField);
-        rightPanel.add(doneButton);
+        rightPanel.add(goButton);
         rightPanel.add(dfsButton);
         rightPanel.add(bfsButton);
         rightPanel.add(aStar1Button);
@@ -110,9 +155,19 @@ public class DameInterface extends JFrame {
         setVisible(true);
     }
 
+    private void updateResults() {
+        if (controller.hasResult()) {
+            timeField.setText(controller.getElapsedTimePretty());
+            parcouruField.setText(String.valueOf(controller.getParcouru()));
+            creeField.setText(String.valueOf(controller.getCree()));
+        }
+    }
+
     private void rebuildBoard() {
         boardPanel.removeAll();
         boardPanel.setLayout(new GridLayout(boardSize, boardSize));
+        
+        // Créer toutes les cases
         for (int row = 0; row < boardSize; row++) {
             boolean white = (row % 2 == 0);
             for (int col = 0; col < boardSize; col++) {
@@ -123,18 +178,27 @@ public class DameInterface extends JFrame {
                 white = !white;
             }
         }
-        // Placement dames exemple
-        int placedQueens = Math.min(boardSize, 10);
-        ImageIcon originalIcon = new ImageIcon("resources/crown-gold.png");
-        Image img = originalIcon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
-        ImageIcon queenIcon = new ImageIcon(img);
-        for (int i = 0; i < placedQueens; i++) {
-            int row = i, col = (2 * i) % boardSize;
-            int idx = row * boardSize + col;
-            JPanel cell = (JPanel) boardPanel.getComponent(idx);
-            cell.setLayout(new BorderLayout());
-            cell.add(new JLabel(queenIcon), BorderLayout.CENTER);
+        
+        // Placer les reines si une solution existe
+        if (controller.hasResult()) {
+            int[] queens = controller.getQueens();
+            if (queens.length > 0) {
+                ImageIcon originalIcon = new ImageIcon("resources/crown-gold.png");
+                Image img = originalIcon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+                ImageIcon queenIcon = new ImageIcon(img);
+                
+                for (int row = 0; row < queens.length; row++) {
+                    int col = queens[row];
+                    if (col >= 0 && col < boardSize) {
+                        int idx = row * boardSize + col;
+                        JPanel cell = (JPanel) boardPanel.getComponent(idx);
+                        cell.setLayout(new BorderLayout());
+                        cell.add(new JLabel(queenIcon), BorderLayout.CENTER);
+                    }
+                }
+            }
         }
+        
         boardPanel.revalidate();
         boardPanel.repaint();
     }
