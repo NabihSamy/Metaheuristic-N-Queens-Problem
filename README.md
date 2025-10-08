@@ -29,7 +29,11 @@ Ce projet implémente une solution au problème des N-Reines en utilisant:
 ### Méthode 1: Sans Maven (compilation manuelle)
 
 Cloner le repository
+
+
 git clone https://github.com/VOTRE_USERNAME/nqueens-solver.git
+
+
 cd nqueens-solver
 
 Créer le dossier de compilation
