@@ -4,6 +4,10 @@ import src.algorithm.heuristic.*;
 import src.model.SearchResult;
 
 public class SolverController {
+    public static final int DFS = 0;
+    public static final int BFS = 0;
+    public static final int ASTAR_H1 = 0;
+    public static final int ASTAR_H2 = 0;
     private SearchAlgorithm algorithm;
     private SearchResult lastResult;
     

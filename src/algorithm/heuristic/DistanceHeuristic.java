@@ -6,6 +6,6 @@ public class DistanceHeuristic implements Heuristic {
     @Override
     public int evaluate(Board board) {
         // Votre logique de distance
-        return board.getLastDistance();
+        return board.getLastQueenDistance();
     }
 }
